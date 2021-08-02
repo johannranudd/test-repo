@@ -1,19 +1,19 @@
-const ul = document.querySelector('ul');
-const li = document.querySelectorAll('li');
+// const ul = document.querySelector("ul");
+// const li = document.querySelectorAll("li");
 
-const companies= [
-    {name: "Company One", category: "Finance", start: 1981, end: 2004},
-    {name: "Company Two", category: "Retail", start: 1992, end: 2008},
-    {name: "Company Three", category: "Auto", start: 1999, end: 2007},
-    {name: "Company Four", category: "Retail", start: 1989, end: 2010},
-    {name: "Company Five", category: "Technology", start: 2009, end: 2014},
-    {name: "Company Six", category: "Finance", start: 1987, end: 2010},
-    {name: "Company Seven", category: "Auto", start: 1986, end: 1996},
-    {name: "Company Eight", category: "Technology", start: 2011, end: 2016},
-    {name: "Company Nine", category: "Retail", start: 1981, end: 1989}
-  ];
-  
-  const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+// const companies = [
+//   { name: "Company One", category: "Finance", start: 1981, end: 2004 },
+//   { name: "Company Two", category: "Retail", start: 1992, end: 2008 },
+//   { name: "Company Three", category: "Auto", start: 1999, end: 2007 },
+//   { name: "Company Four", category: "Retail", start: 1989, end: 2010 },
+//   { name: "Company Five", category: "Technology", start: 2009, end: 2014 },
+//   { name: "Company Six", category: "Finance", start: 1987, end: 2010 },
+//   { name: "Company Seven", category: "Auto", start: 1986, end: 1996 },
+//   { name: "Company Eight", category: "Technology", start: 2011, end: 2016 },
+//   { name: "Company Nine", category: "Retail", start: 1981, end: 1989 },
+// ];
+
+// const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
 // *forLoop
 // for (let i = 0; i < li.length; i++) {
@@ -46,8 +46,8 @@ const companies= [
 // console.log(mapArr);
 
 // const randomAge = ages.map(function(age) {
-    
-//     return Math.random() * age.length; 
+
+//     return Math.random() * age.length;
 // })
 
 // function random(age) {
@@ -59,32 +59,93 @@ const companies= [
 
 // console.log(random(ages));
 
-const sot = companies.sort(function(a, b) {
-    if (a.start > b.start) {
-        return 1
-    } else {
-        return -1
-    }
-}).filter(function(item) {
-    if (item.start < 1995) {
-        return item;
-    }
-});
-console.log(sot);
-// console.log(sot);
-// const filt = companies.filter(function(item) {
-//     if (item.start > 1995) {
+// const sot = companies.sort(function(a, b) {
+//     if (a.start > b.start) {
+//         return 1
+//     } else {
+//         return -1
+//     }
+// }).filter(function(item) {
+//     if (item.start < 1995) {
 //         return item;
 //     }
+// });
+
+// sot.forEach(function(comp) {
+//     if (comp.category == 'Retail') {
+//         comp.category = 'wrfwsfwefwef';
+//         comp.name = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah';
+//     }
 // })
-// console.log(filt);
+
+// console.log(sot);
+
+// companies.sort(function (a, b) {
+//   if (a.start > b.start) {
+//     return 1;
+//   } else {
+//     return -1;
+//   }
+// });
+
+// const filtComp = companies.filter(function (comp) {
+//   if (comp.end - comp.start >= 10) {
+//       comp.category = 'new';
+//     return comp;
+//   }
+// });
+
+// const mapComp = companies.map(function (comp) {
+//   return comp.category;
+// });
+
+// console.log(filtComp);
 
 
-companies.forEach(function(comp) {
-    // console.log(comp.category);
-        comp.category = 'wrfwsfwefwef';
-        comp.name = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah';
-    
-})
+// const ul = document.querySelector("ul");
 
-console.log(companies);
+const ul1 = document.querySelector(".ul1");
+const ul2 = document.querySelector(".ul2");
+const li = document.querySelectorAll("li");
+
+const companies = [
+  { name: "Company One", category: "Finance", start: 1981, end: 2004 },
+  { name: "Company Two", category: "Retail", start: 1992, end: 2008 },
+  { name: "Company Three", category: "Auto", start: 1999, end: 2007 },
+  { name: "Company Four", category: "Retail", start: 1989, end: 2010 },
+  { name: "Company Five", category: "Technology", start: 2009, end: 2014 },
+  { name: "Company Six", category: "Finance", start: 1987, end: 2010 },
+  { name: "Company Seven", category: "Auto", start: 1986, end: 1996 },
+  { name: "Company Eight", category: "Technology", start: 2011, end: 2016 },
+  { name: "Company Nine", category: "Retail", start: 1981, end: 1989 },
+];
+
+const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+
+
+function getRed(c) {
+    const mapComp = c.map(comp => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('flexing');
+        listItem.innerHTML = `
+        <span>${comp.name}</span>
+        <span>${comp.category}</span>
+        <span>${comp.start}</span>
+        <span>${comp.end}</span>`;
+        ul1.appendChild(listItem);
+        if (comp.category === 'Retail') {
+            listItem.children[1].style.color = 'red';
+        }
+        // console.log(listItem.childNodes);
+        // return listItem;
+    }).join("");
+
+    // ul1.innerHTML = mapComp;
+}
+
+getRed(companies);
+
+
+
+
+// console.log(mapComp);

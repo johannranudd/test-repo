@@ -1,8 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 ul {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 500px;
     list-style-type: none;
+    margin-left: 2rem;
+    
 }
 
 li {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: .7rem 0;
+}
+
+span {
+    width: 120px;
+    
+}
+
+.flexing {
+    display: flex;
+    justify-content: space-between;
+}
+
+.red {
+    color: red;
 }
