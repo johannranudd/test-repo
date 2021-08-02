@@ -101,7 +101,6 @@
 
 // console.log(filtComp);
 
-
 // const ul = document.querySelector("ul");
 
 const ul1 = document.querySelector(".ul1");
@@ -121,31 +120,71 @@ const companies = [
 ];
 
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+// sort
+function sortItems(sor) {
+  sor.sort((a, b) => {
+    if (a.start > b.start) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+sortItems(companies);
 
-
-function getRed(c) {
-    const mapComp = c.map(comp => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('flexing');
-        listItem.innerHTML = `
-        <span>${comp.name}</span>
+// map
+function mapItems(u) {
+  companies
+    .map((comp) => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("flexing");
+      listItem.innerHTML = `<span>${comp.name}</span>
         <span>${comp.category}</span>
         <span>${comp.start}</span>
         <span>${comp.end}</span>`;
-        ul1.appendChild(listItem);
-        if (comp.category === 'Retail') {
-            listItem.children[1].style.color = 'red';
-        }
-        // console.log(listItem.childNodes);
-        // return listItem;
-    }).join("");
 
-    // ul1.innerHTML = mapComp;
+      u.appendChild(listItem);
+    })
+    .join("");
 }
+mapItems(ul1);
 
-getRed(companies);
+function filterItems(f) {
+  const filt = companies.filter((item) => {
+    if (item.category === "Retail") {
+      const listItem = document.createElement("li");
+      listItem.classList.add("flexing");
+      listItem.innerHTML = `<span>${item.name}</span>
+        <span>${item.category}</span>
+        <span>${item.start}</span>
+        <span>${item.end}</span>`;
 
+      f.appendChild(listItem);
+    }
+  });
+  return filt;
+  // mapItems(ul1)
+}
+filterItems(ul1)
+// display
+// function displayItems(d) {
 
+// }
 
+// displayItems()
 
-// console.log(mapComp);
+// filter
+// function filterItems(){
+//     companies.filter(item => {
+//         if (item.category !== 'Retail') {
+//             // return mapItems(ul2)
+//             return item
+//         }
+
+//     })
+//     return mapItems(ul2)
+// }
+
+// filterItems();
+
+// filterItems(mapItems(ul2))
