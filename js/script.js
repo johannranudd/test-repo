@@ -120,71 +120,67 @@ const companies = [
 ];
 
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+
 // sort
-function sortItems(sor) {
-  sor.sort((a, b) => {
-    if (a.start > b.start) {
-      return 1;
-    } else {
-      return -1;
-    }
+const sortedCompanies = companies.sort((a, b) => {
+  if (a.start > b.start) {
+    return 1;
+  } else {
+    return -1;
+  }
+});
+
+function createItem(create) {
+  const listItem = document.createElement("li");
+  listItem.classList.add("flexing");
+  listItem.innerHTML = `<span>${create.name}</span>
+              <span>${create.category}</span>
+              <span>${create.start}</span>
+              <span>${create.end}</span>`;
+  return listItem;
+}
+
+// console.log(createItem(companies));
+
+function mapFunction(companyList, uList) {
+  companyList.map((mapItem) => {
+    uList.appendChild(createItem(mapItem));
   });
 }
-sortItems(companies);
 
-// map
-function mapItems(u) {
-  companies
-    .map((comp) => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("flexing");
-      listItem.innerHTML = `<span>${comp.name}</span>
-        <span>${comp.category}</span>
-        <span>${comp.start}</span>
-        <span>${comp.end}</span>`;
+const filterCompanies = companies.filter((item) => {
+  return item.category === "Retail";
+});
 
-      u.appendChild(listItem);
-    })
-    .join("");
-}
-mapItems(ul1);
 
-function filterItems(f) {
-  const filt = companies.filter((item) => {
-    if (item.category === "Retail") {
-      const listItem = document.createElement("li");
-      listItem.classList.add("flexing");
-      listItem.innerHTML = `<span>${item.name}</span>
-        <span>${item.category}</span>
-        <span>${item.start}</span>
-        <span>${item.end}</span>`;
+const startedBefore = companies.filter(item => {
+    return item.start > 1992;
+})
 
-      f.appendChild(listItem);
-    }
-  });
-  return filt;
-  // mapItems(ul1)
-}
-filterItems(ul1)
-// display
-// function displayItems(d) {
+mapFunction(companies, ul1);
+mapFunction(startedBefore, ul2);
+
+
+
+
+
+
+
+
+// function mapFunction(companyList) {
+//     companyList.map((mapItem) => {
+//         const listItem = document.createElement("li");
+//         listItem.classList.add("flexing");
+//         listItem.innerHTML = `<span>${mapItem.name}</span>
+//               <span>${mapItem.category}</span>
+//               <span>${mapItem.start}</span>
+//               <span>${mapItem.end}</span>`;
+//               function chooseUl(uList) {
+//                 uList.appendChild(listItem);
+//               }
+//               chooseUl(ul1)
+//       });
 
 // }
 
-// displayItems()
-
-// filter
-// function filterItems(){
-//     companies.filter(item => {
-//         if (item.category !== 'Retail') {
-//             // return mapItems(ul2)
-//             return item
-//         }
-
-//     })
-//     return mapItems(ul2)
-// }
-
-// filterItems();
-
-// filterItems(mapItems(ul2))
+// mapFunction(filterCompanies);
