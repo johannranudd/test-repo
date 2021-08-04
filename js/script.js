@@ -115,45 +115,43 @@ const companies = [
   { name: "Company Four", category: "Retail", start: 1989, end: 2010 },
   { name: "Company Five", category: "Technology", start: 2009, end: 2014 },
   { name: "Company Six", category: "Finance", start: 1987, end: 2010 },
-  { name: "Company Seven", category: "Auto", start: 1986, end: 1996 }, 
+  { name: "Company Seven", category: "Auto", start: 1986, end: 1996 },
   { name: "Company Eight", category: "Technology", start: 2011, end: 2016 },
   { name: "Company Nine", category: "Retail", start: 1981, end: 1989 },
 ];
 
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
-
-// !test 
+// !test
 // createItem
 function createItem(item) {
-    const listItem = document.createElement('li');
-    listItem.classList.add('flexing');
-    listItem.innerHTML = `<span>${item.name}</span>
+  const listItem = document.createElement("li");
+  listItem.classList.add("flexing");
+  listItem.innerHTML = `<span>${item.name}</span>
     <span>${item.category}</span>
     <span>${item.start}</span>
     <span>${item.end}</span>`;
 
-    return listItem;
+  return listItem;
 }
 // one has been returned
 
 // map and display items
 function displayItem(array, ulList) {
-    array.map(mapItem => {
-        ulList.appendChild(createItem(mapItem))
-    })
+  array.map((mapItem) => {
+    ulList.appendChild(createItem(mapItem));
+  });
 }
 
 // choose array to sort (in this case by start)
 function sortBy(arr) {
-    arr.sort((a, b) => {
-        if (a.start > b.start) {
-            return 1
-        } else {
-            return -1
-        }
-    })
-    
+  arr.sort((a, b) => {
+    if (a.start > b.start) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
 // display items in the DOM
 
@@ -162,77 +160,47 @@ function sortBy(arr) {
 
 // filter items
 function filterByStartAndCategory(array, val) {
-    const filterArr = array.filter(item => {
-        return item.start >= val || item.category === val;
-    })
-    return filterArr;
+  const filterArr = array.filter((item) => {
+    return item.start >= val || item.category === val;
+  });
+  return filterArr;
 }
 
 // displayItem(filterByStartAndCategory(companies, 'Retail'), ul2)
 
 function filterByMoreThanTenYears(arr, val) {
-    const filterArr = arr.filter(item => {
-        return (item.end - item.start) >= val
-            
-    })
-    return filterArr;
+  const filterArr = arr.filter((item) => {
+    return item.end - item.start >= val;
+  });
+  return filterArr;
 }
 // filterByMoreThanTenYears(companies, 10)
 // displayItem(filterByMoreThanTenYears(companies, 1999), ul3)
 // displayItem(filterByMoreThanTenYears(companies, 10), ul3)
 
+const buttons = document.querySelectorAll("#btn");
+let editFlag = false;
 
-
-const btnDiv = document.querySelector('.button-div');
-
-btnDiv.addEventListener("click", function(e) {
-    const id = e.target.dataset.id;
+buttons.forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+        const id = e.target.dataset.id;
+        ul1.innerHTML = '';
+        
+        if (id === "10-years-pluss") {
+          displayItem(filterByMoreThanTenYears(companies, 10), ul1);
+        } else if (id === "Retail") {
+          displayItem(filterByStartAndCategory(companies, "Retail"), ul1);
+        } 
+        
+    })
     
     
 })
+ 
 
+// sortBy(companies);
 
-
-// if (e.target.dataset.id === '10-years-pluss') {
-//     displayItem(filterByMoreThanTenYears(companies, 10), ul1);
-// } else if (e.target.dataset.id === 'Retail') {
-//     ul1.innerHTML = '';
-//     displayItem(filterByMoreThanTenYears(companies, 'Retail'), ul1);
-// }
 // !end test
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // !test works
 // sort
@@ -266,20 +234,12 @@ btnDiv.addEventListener("click", function(e) {
 //   return item.category === "Retail";
 // });
 
-
 // const startedBefore = companies.filter(item => {
 //     return item.start > 1992;
 // })
 
 // mapFunction(companies, ul1);
 // mapFunction(startedBefore, ul2);
-
-
-
-
-
-
-
 
 // function mapFunction(companyList) {
 //     companyList.map((mapItem) => {
