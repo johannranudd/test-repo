@@ -276,27 +276,70 @@ const companies = [
   { name: "Company Eight", category: "Technology", start: 2011, end: 2016 },
   { name: "Company Nine", category: "Retail", start: 1981, end: 1989 },
 ];
-
+let editFlag;
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+// displayItem(companies);
+window.addEventListener("DOMContentLoaded", displayItem(companies))
 
 buttons.addEventListener("click", function(e) {
+  ul1.innerHTML = ''
   const id = e.target.dataset.id;
   if (id === 'Retail') {
-    ul1.innerHTML = displayItem(companies);
+    displayItem(filterByCategory);
+    editFlag = 'Retail';
+  } else if (id === '10-years-pluss') {
+    displayItem(filterByYears);
+    editFlag = '10-years-pluss';
+  } else if (id === 'sortBtn' && editFlag === '10-years-pluss') {
+    displayItem(sortItems(filterByYears)); // todo make this into a parameter that can be changed depending on what is currently showing in ul1
+  } else if (id === 'sortBtn' && editFlag === 'Retail') {
+    displayItem(sortItems(filterByCategory));
   }
 })
 
 function createItem(item) {
-  const listItem = 
+  const listItem = document.createElement('li');
+  listItem.classList.add('flexing');
+  listItem.innerHTML = `<span>${item.name}</span>
+  <span>${item.category}</span>
+  <span>${item.start}</span>
+  <span>${item.end}</span>`;
+  ul1.appendChild(listItem);
 }
-
 
 function displayItem(array) {
   array.map(mapItem => {
-    return `<span>${mapItem.name}</span>
-    <span>${mapItem.category}</span>
-    <span>${mapItem.start}</span>
-    <span>${mapItem.end}</span>`;
+    return createItem(mapItem);
   })
-  return array;
 }
+
+const filterByCategory = companies.filter(filterItem => {
+  return filterItem.category === "Retail";
+})
+const filterByYears = companies.filter(filterItem => {
+  return (filterItem.end - filterItem.start) >= 10;
+})
+
+function sortItems(sortItem) {
+  const sortByStart = sortItem.sort((a, b) => {
+    if (a.start > b.start) {
+      return 1
+    } else {
+      return -1
+    }
+  })
+  return sortByStart;
+}
+
+// displayItem(filterCompanies)
+
+// function displayItem() {
+//   companies.map(mapItem => {
+//     return `<span>${mapItem.name}</span>
+//     <span>${mapItem.category}</span>
+//     <span>${mapItem.start}</span>
+//     <span>${mapItem.end}</span>`;
+//   })
+//   return companies;
+// }
+
